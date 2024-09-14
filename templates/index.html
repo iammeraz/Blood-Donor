@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="jumbotron text-center bg-light shadow-lg">
+                <h1 class="display-4 mb-4">
+                    <i class="fas fa-heartbeat"></i> Blood Donation System
+                </h1>
+                <p class="lead mb-5">Help save lives by donating blood or finding donors in need.</p>
+                <div class="d-flex justify-content-around">
+                    <!-- Add Donor Button -->
+                    <a href="{% url 'add_donor' %}" class="btn btn-lg btn-success shadow">
+                        <i class="fas fa-user-plus"></i> Add Donor
+                    </a>
+                    <!-- Find Donor Button -->
+                    <a href="{% url 'donor_list' %}" class="btn btn-lg btn-primary shadow">
+                        <i class="fas fa-search"></i> Find Donor
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<style>
+    .jumbotron {
+        border-radius: 15px;
+        padding: 50px;
+        background-color: #f8f9fa;
+    }
+    
+    h1 {
+        font-weight: bold;
+        color: #007bff;
+    }
+    
+    .btn-lg {
+        padding: 15px 30px;
+        font-size: 18px;
+        font-weight: 600;
+    }
+    
+    .btn-success, .btn-primary {
+        width: 45%;
+    }
+    
+    @media (max-width: 768px) {
+        .btn-success, .btn-primary {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+    
+</style>

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Donor List{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mt-4 mb-4">Donor List</h1>
+
+        <!-- Search Form -->
+        <form method="GET" action="{% url 'donor_list' %}" class="mb-4">
+            <div class="form-group">
+                <label for="blood_group">Search by Blood Group:</label>
+                <select id="blood_group" name="blood_group" class="form-control">
+                    <option value="" >Blood Group</option>
+                    <option value="A+" {% if request.GET.blood_group == 'A+' %}selected{% endif %}>A+</option>
+                    <option value="A-" {% if request.GET.blood_group == 'A-' %}selected{% endif %}>A-</option>
+                    <option value="B+" {% if request.GET.blood_group == 'B+' %}selected{% endif %}>B+</option>
+                    <option value="B-" {% if request.GET.blood_group == 'B-' %}selected{% endif %}>B-</option>
+                    <option value="AB+" {% if request.GET.blood_group == 'AB+' %}selected{% endif %}>AB+</option>
+                    <option value="AB-" {% if request.GET.blood_group == 'AB-' %}selected{% endif %}>AB-</option>
+                    <option value="O+" {% if request.GET.blood_group == 'O+' %}selected{% endif %}>O+</option>
+                    <option value="O-" {% if request.GET.blood_group == 'O-' %}selected{% endif %}>O-</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <!-- Donor List -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Blood Group</th>
+                        <th>Contact</th>
+                        <th>Address</th>  <!-- New column for address -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for donor in donors %}
+                        <tr>
+                            <td>{{ donor.name }}</td>
+                            <td>{{ donor.blood_group }}</td>
+                            <td>{{ donor.phone_number }}</td>
+                            <td>{{ donor.address }}</td>  <!-- New data for address -->
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="4">No donors found.</td>  <!-- Adjust colspan -->
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+<style>
+    @media (max-width: 768px) {
+        .table {
+            font-size: 0.9rem; /* Adjust font size for smaller screens */
+        }
+        .table td, .table th {
+            padding: 0.5rem; /* Adjust padding */
+        }
+    }
+</style>
